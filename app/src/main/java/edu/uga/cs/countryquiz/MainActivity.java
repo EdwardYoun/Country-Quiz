@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 /**
- * The main activity class.
+ * The main activity class. Push Test
  */
 public class MainActivity extends AppCompatActivity {
 
