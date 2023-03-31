@@ -51,7 +51,7 @@ public class CountriesData {
 
     // Retrieve all countries and return them as a List.
     // This is how we restore persistent objects stored as rows in the countries table in the database.
-    // For each retrieved row, we create a new JobLead (Java POJO object) instance and add it to the list.
+    // For each retrieved row, we create a new Country (Java POJO object) instance and add it to the list.
     public List<Country> retrieveAllCountries() {
         ArrayList<Country> countries = new ArrayList<>();
         Cursor cursor = null;
@@ -69,7 +69,7 @@ public class CountriesData {
 
                     if( cursor.getColumnCount() >= 3) {
 
-                        // get all attribute values of this job lead
+                        // get all attribute values of this country
                         columnIndex = cursor.getColumnIndex( CountriesDBHelper.COUNTRIES_COLUMN_ID );
                         long id = cursor.getLong( columnIndex );
                         columnIndex = cursor.getColumnIndex( CountriesDBHelper.COUNTRIES_COLUMN_NAME );
@@ -110,7 +110,7 @@ public class CountriesData {
         // Prepare the values for all of the necessary columns in the table
         // and set their values to the variables of the Country argument.
         // This is how we are providing persistence to a Country (Java object) instance
-        // by storing it as a new row in the database table representing job leads.
+        // by storing it as a new row in the database table representing countries.
         ContentValues values = new ContentValues();
         values.put( CountriesDBHelper.COUNTRIES_COLUMN_NAME, country.getName());
         values.put( CountriesDBHelper.COUNTRIES_COLUMN_CONTINENT, country.getContinent() );
