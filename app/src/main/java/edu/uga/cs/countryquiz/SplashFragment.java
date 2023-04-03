@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -74,7 +75,12 @@ public class SplashFragment extends Fragment {
         countriesData = new CountriesData(getActivity());
         countriesData.open();
 
-        new CountriesDBWriter().execute();
+        Context context = getContext();
+        File countriesFile = context.getDatabasePath("countries.db");
+
+        if (!countriesFile.exists()) {
+            new CountriesDBWriter().execute();
+        }
     }
 
     private class CountriesDBWriter extends AsyncTask<Void, InputStream> {
@@ -107,6 +113,26 @@ public class SplashFragment extends Fragment {
                 countriesData.storeCountry(country);
                 Log.d( TAG, country + " inserted" );
             }
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (countriesData != null && !countriesData.isDBOpen() ) {
+            countriesData.open();
+            Log.d( TAG, "SplashFragment.onResume(): opening DB" );
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if (countriesData != null) {
+            countriesData.close();
+            Log.d( TAG, "SplashFragment.onPause(): closing DB" );
         }
     }
 }
