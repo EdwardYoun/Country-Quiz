@@ -27,6 +27,12 @@ public class QuizzesDBHelper extends SQLiteOpenHelper {
     public static final String QUIZZES_COLUMN_DATE = "date";
     public static final String QUIZZES_COLUMN_RESULT = "result";
     public static final String QUIZZES_COLUMN_NUM = "num";
+    public static final String QUIZZES_COLUMN_QUESTION1 = "question1";
+    public static final String QUIZZES_COLUMN_QUESTION2 = "question2";
+    public static final String QUIZZES_COLUMN_QUESTION3 = "question3";
+    public static final String QUIZZES_COLUMN_QUESTION4 = "question4";
+    public static final String QUIZZES_COLUMN_QUESTION5 = "question5";
+    public static final String QUIZZES_COLUMN_QUESTION6 = "question6";
 
     // This is a reference to the only instance for the helper.
     private static QuizzesDBHelper helperInstance;
@@ -39,7 +45,13 @@ public class QuizzesDBHelper extends SQLiteOpenHelper {
                     + QUIZZES_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + QUIZZES_COLUMN_DATE + " TEXT, "
                     + QUIZZES_COLUMN_RESULT + " TEXT,"
-                    + QUIZZES_COLUMN_NUM + " LONG"
+                    + QUIZZES_COLUMN_NUM + " LONG,"
+                    + QUIZZES_COLUMN_QUESTION1 + " QUESTION,"
+                    + QUIZZES_COLUMN_QUESTION2 + " QUESTION,"
+                    + QUIZZES_COLUMN_QUESTION3 + " QUESTION,"
+                    + QUIZZES_COLUMN_QUESTION4 + " QUESTION,"
+                    + QUIZZES_COLUMN_QUESTION5 + " QUESTION,"
+                    + QUIZZES_COLUMN_QUESTION6 + " QUESTION"
                     + ")";
 
     //constructor
