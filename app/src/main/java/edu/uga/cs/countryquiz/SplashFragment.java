@@ -105,6 +105,7 @@ public class SplashFragment extends Fragment {
                 // nextRow[] is an array of values from the line
                 Country country = new Country(nextRow[0], nextRow[1]);
                 countriesData.storeCountry(country);
+                Log.d( TAG, country + " inserted" );
             }
         }
     }
