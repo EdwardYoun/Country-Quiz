@@ -35,7 +35,7 @@ public class Quiz {
         this.question6 = null;
     }
 
-    public Quiz( String date, String result, long num, Question[] questions) {
+    public Quiz( String date, String result, long num, Question question1, Question question2, Question question3, Question question4, Question question5, Question question6) {
         this.id = -1;  // the primary key id will be set by a setter method
         this.date = date;
         this.result = result;

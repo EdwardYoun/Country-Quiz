@@ -1,16 +1,24 @@
 package edu.uga.cs.countryquiz;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TableRow;
+import android.widget.TextView;
 
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
+
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,11 +77,35 @@ public class SplashFragment extends Fragment {
         new CountriesDBWriter().execute();
     }
 
-    private class CountriesDBWriter extends AsyncTask<Void, Country> {
+    private class CountriesDBWriter extends AsyncTask<Void, InputStream> {
         @Override
-        protected List<Country> doInBackground( Void... params) {
-            InputStream in_s = getAssets().open( "ranking.csv" );
+        protected InputStream doInBackground( Void... params) {
+            Context context = getContext();
+            try {
+                InputStream in_s = context.getAssets().open("country_continent.csv");
+                return in_s;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         @Override
+        protected void onPostExecute( InputStream in_s) {
+            // read the CSV data
+            CSVReader reader = new CSVReader( new InputStreamReader( in_s ) );
+            String[] nextRow;
+            while(true) {
+                try {
+                    if (!(( nextRow = reader.readNext() ) != null)) break;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (CsvValidationException e) {
+                    throw new RuntimeException(e);
+                }
+
+                // nextRow[] is an array of values from the line
+                Country country = new Country(nextRow[0], nextRow[1]);
+                countriesData.storeCountry(country);
+            }
+        }
     }
 }

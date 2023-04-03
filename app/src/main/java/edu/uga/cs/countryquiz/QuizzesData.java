@@ -88,6 +88,16 @@ public class QuizzesData {
                         long num = cursor.getLong( columnIndex );
                         columnIndex = cursor.getColumnIndex( QuizzesDBHelper.QUIZZES_COLUMN_QUESTION1 );
                         Question question1 = cursor.get
+                        columnIndex = cursor.getColumnIndex( QuizzesDBHelper.QUIZZES_COLUMN_QUESTION2 );
+                        Question question2 = cursor.get
+                        columnIndex = cursor.getColumnIndex( QuizzesDBHelper.QUIZZES_COLUMN_QUESTION3 );
+                        Question question3 = cursor.get
+                        columnIndex = cursor.getColumnIndex( QuizzesDBHelper.QUIZZES_COLUMN_QUESTION4 );
+                        Question question4 = cursor.get
+                        columnIndex = cursor.getColumnIndex( QuizzesDBHelper.QUIZZES_COLUMN_QUESTION5 );
+                        Question question5 = cursor.get
+                        columnIndex = cursor.getColumnIndex( QuizzesDBHelper.QUIZZES_COLUMN_QUESTION6 );
+                        Question question6 = cursor.get
 
 
                         // create a new Quiz object and set its state to the retrieved values
