@@ -81,13 +81,13 @@ public class SplashFragment extends Fragment{
 
         countriesList = new ArrayList<Country>();
 
-        countriesData = new CountriesData(getActivity());
-        countriesData.open();
-
         Context context = getContext();
         File countriesFile = context.getDatabasePath("countries.db");
 
-        if (!countriesFile.exists()) {
+        countriesData = new CountriesData(getActivity());
+        countriesData.open();
+
+        if () {
             new CountriesDBWriter().execute();
         }
     }
