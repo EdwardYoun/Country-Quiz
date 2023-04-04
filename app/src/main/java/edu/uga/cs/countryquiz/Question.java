@@ -16,6 +16,7 @@ public class Question {
     private int correct;
 
 
+
     public Question()
     {
         this.country = null;
@@ -74,6 +75,5 @@ public class Question {
     {
         return country + " " + continent + " " + wrong1 + " " + wrong2 + " " + correct;
     }
-
 
 }
