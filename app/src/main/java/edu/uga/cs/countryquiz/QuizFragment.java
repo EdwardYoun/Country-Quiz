@@ -101,6 +101,10 @@ public class QuizFragment extends Fragment {
         countriesData = new CountriesData(getActivity());
         countriesData.open();
         countriesList = countriesData.retrieveAllCountries();
+        Country country = null;
+        for (int i = 0; i < 6; i++) {
+
+        }
     }
 
     public static int getNumberOfQuestions() { return quests.length; } //push
