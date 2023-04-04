@@ -9,6 +9,7 @@ package edu.uga.cs.countryquiz;
 public class CurrentQuiz {
 
     private Question[] quests;
+    //reference of array position, not current question otherwise it would be 1, not 0
     private int curQuest;
     private String date;
     private long curScore;
