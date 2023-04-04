@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -76,7 +77,7 @@ public class SplashFragment extends Fragment{
         Button quiz = getView().findViewById(R.id.button);
         Button result = getView().findViewById(R.id.button2);
 
-        //setOnClickListener will be for other activities
+        quiz.setOnClickListener(new QuizListener());
 
 
         countriesList = new ArrayList<Country>();
@@ -91,6 +92,14 @@ public class SplashFragment extends Fragment{
 
         if (countriesList.isEmpty()) {
             new CountriesDBWriter().execute();
+        }
+    }
+
+    private class QuizListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(v.getContext(), QuizActivity.class );
+            startActivity(intent);
         }
     }
 
