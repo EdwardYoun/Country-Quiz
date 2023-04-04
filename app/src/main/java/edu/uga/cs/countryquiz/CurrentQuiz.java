@@ -10,7 +10,6 @@ public class CurrentQuiz {
 
     private Question[] quests;
     private int curQuest;
-
     private String date;
     private long curScore;
     //questions answered

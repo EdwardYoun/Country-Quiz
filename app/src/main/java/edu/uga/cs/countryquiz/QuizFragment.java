@@ -4,9 +4,16 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import java.util.ArrayList;
+import android.widget.RadioGroup;
+import android.widget.Button;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +21,14 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class QuizFragment extends Fragment {
+
+    private View view;
+    private RadioButton[] answers;
+    private RadioGroup answerGroup;
+    private TextView questionText;
+    private CurrentQuiz currentQuiz;
+
+
 
     public QuizFragment() {
         // Required empty public constructor
@@ -31,7 +46,25 @@ public class QuizFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quiz, container, false);
+        view = inflater.inflate(R.layout.fragment_quiz, container, false);
+
+        questionText = view.findViewById(R.id.questText);
+        answers = new RadioButton[] {
+                view.findViewById(R.id.ans1),
+                view.findViewById(R.id.ans2),
+                view.findViewById(R.id.ans3)
+        };
+        answerGroup = view.findViewById(R.id.answer_choices);
+
+        currentQuiz = ((QuizActivity) getActivity()).getCurrentQuiz();
+        setQuestion(currentQuiz.getCurQuest());
+
+
+        return view;
+    }
+
+    private void setQuestion(Question question) {
+        questionText.setText(question.getQuestionText());
+
     }
 }
