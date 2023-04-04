@@ -14,7 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Calendar;
 import java.util.Random;
 import android.widget.RadioGroup;
 import android.widget.Button;
@@ -38,6 +41,8 @@ public class QuizFragment extends Fragment {
 
     //question number in quiz
     private int questNum;
+
+    private String date;
 
     public QuizFragment() {
         // Required empty public constructor
@@ -72,6 +77,10 @@ public class QuizFragment extends Fragment {
                 getView().findViewById(R.id.ans3)
         };
         answerGroup = getView().findViewById(R.id.answer_choices);
+
+        date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+
+        currentQuiz = new CurrentQuiz (quests, 0, date, 0, 0, 0);
     }
 
     private void setQuestion(Question question) {
@@ -100,5 +109,5 @@ public class QuizFragment extends Fragment {
         }
     }
 
-    public static int getNumberOfQuestions() { return quests.length; }
+    public static int getNumberOfQuestions() { return quests.length; } //push
 }

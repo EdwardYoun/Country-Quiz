@@ -20,6 +20,6 @@ public class QuizzesPagerAdapter extends FragmentStateAdapter {
     @Override
     public int getItemCount() {
         return QuizFragment
-                .getNumberOfQuestions();
+                .getNumberOfQuestions(); //push
     }
 }
