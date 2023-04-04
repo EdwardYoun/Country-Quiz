@@ -87,7 +87,9 @@ public class SplashFragment extends Fragment{
         countriesData = new CountriesData(getActivity());
         countriesData.open();
 
-        if () {
+        countriesList = countriesData.retrieveAllCountries();
+
+        if (countriesList.isEmpty()) {
             new CountriesDBWriter().execute();
         }
     }

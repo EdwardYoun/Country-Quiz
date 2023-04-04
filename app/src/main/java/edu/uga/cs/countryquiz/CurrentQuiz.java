@@ -13,14 +13,18 @@ public class CurrentQuiz {
 
     private String date;
     private long curScore;
+    //questions answered
     private long ansQ;
+    //user's answer
+    private long userAns;
 
     public CurrentQuiz() {
         this.quests = new Question[6];
         this.curQuest = 0;
         this.date = null;
-        this.curScore = -1;
-        this.ansQ = -1;
+        this.curScore = 0;
+        this.ansQ = 0;
+        this.userAns = 0;
     }
 
     public void addQuest(Question question){
@@ -39,7 +43,7 @@ public class CurrentQuiz {
     }
 
     public void setCurScore() {
-        if(getCurQuest().getRightAnswer() == ansQ) {
+        if(getCurQuest().getRightAnswer() == userAns) {
             curScore++;
         }
     }
@@ -57,23 +61,27 @@ public class CurrentQuiz {
         this.curQuest = 0;
         this.ansQ = 0;
         this.curScore = 0;
+        this.userAns = 0;
     }
 
-    public CurrentQuiz(Question[] quests, int curQuest, String date, long curScore, long ansQ) {
+    public CurrentQuiz(Question[] quests, int curQuest, String date, long curScore, long ansQ, long userAns) {
         this.quests = quests;
         this.curQuest = curQuest;
         this.date = date;
         this.curScore = curScore;
         this.ansQ = ansQ;
+        this.userAns = userAns;
     }
 
     public String getDate() { return date; }
     public void setDate(String date) {this.date = date; }
     public long getAnsQ() { return ansQ; }
     public void setAnsQ(long ansQ) { this.ansQ = ansQ; }
+    public long getUserAns() { return userAns; }
+    public void setUserAns(long userAns) { this.userAns = userAns; }
 
     public String toString()
     {
-        return date + " " + curScore + " " + ansQ;
+        return quests + " " + curQuest + " " + date + " " + curScore + " " + ansQ + " " + userAns;
     }
 }
