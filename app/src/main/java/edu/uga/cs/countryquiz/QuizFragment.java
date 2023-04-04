@@ -48,6 +48,12 @@ public class QuizFragment extends Fragment {
 
     //position in quiz
     private int questNum;
+    //score of quiz
+    private int quizScore;
+    //questions answered
+    private int questAns;
+    //user's answer
+    private int userAns;
 
     private String date;
 
@@ -100,7 +106,7 @@ public class QuizFragment extends Fragment {
 
         setQuestions(quests);
 
-        currentQuiz = new CurrentQuiz (quests, 0, date, 0, 0, 0);
+        currentQuiz = new CurrentQuiz (quests, questNum, date, 0, 0);
 
         //question number
         int num = questNum + 1;
