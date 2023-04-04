@@ -38,6 +38,9 @@ public class QuizFragment extends Fragment {
     private RadioButton[] answers;
     private RadioGroup answerGroup;
     private TextView questionText;
+    private TextView score;
+    private Button startNew;
+    private Button seeResults;
     private CurrentQuiz currentQuiz;
 
     //position in quiz
@@ -84,6 +87,10 @@ public class QuizFragment extends Fragment {
                 getView().findViewById(R.id.ans3)
         };
         answerGroup = getView().findViewById(R.id.answer_choices);
+        score = getView().findViewById(R.id.textView2);
+        startNew = getView().findViewById(R.id.button4);
+        seeResults = getView().findViewById(R.id.button3);
+
 
         date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 
@@ -93,6 +100,17 @@ public class QuizFragment extends Fragment {
 
         //question number
         int num = questNum + 1;
+
+        if (questNum == 6) {
+            questionText.setVisibility(View.GONE);
+            answers[0].setVisibility(View.GONE);
+            answerGroup.setVisibility(View.GONE);
+        }
+        else {
+            score.setVisibility(View.GONE);
+            startNew.setVisibility(View.GONE);
+            seeResults.setVisibility(View.GONE);
+        }
 
         questionText.setText("Question " + num);
     }
@@ -107,5 +125,5 @@ public class QuizFragment extends Fragment {
         }
     }
 
-    public static int getNumberOfQuestions() { return quests.length; } //push
+    public static int getNumberOfQuestions() { return quests.length+1; } //push
 }
