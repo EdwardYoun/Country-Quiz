@@ -15,6 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,6 +27,8 @@ import java.util.Random;
 import android.widget.RadioGroup;
 import android.widget.Button;
 
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
 
 
 /**
@@ -101,10 +106,15 @@ public class QuizFragment extends Fragment {
         startNew = getView().findViewById(R.id.button4);
         seeResults = getView().findViewById(R.id.button3);
 
-
         date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 
-        setQuestions(quests);
+        if (quests[0] == null) {
+            setQuestions(quests);
+            Log.d(TAG, "added quests");
+        }
+        else {
+            Log.d(TAG, "quests already added");
+        }
 
         currentQuiz = new CurrentQuiz (quests, questNum, date, 0, 0);
 
@@ -117,14 +127,8 @@ public class QuizFragment extends Fragment {
             answers[1].setVisibility(View.GONE);
             answers[2].setVisibility(View.GONE);
             answerGroup.setVisibility(View.GONE);
-            int currentScore = (int) currentQuiz.getCurScore();
-            seeResults.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view){
-                    score.setText("Score: " + currentScore + " out of 6.");
 
-                }
-            });
-
+            //new QuizFragment.QuizzesDBWriter().execute();
 
         }
         else {
@@ -187,5 +191,16 @@ public class QuizFragment extends Fragment {
     public static int getNumberOfQuestions() { return quests.length+1; } //push
 
 
+    /*
+    private class QuizzesDBWriter extends AsyncTask<Void, --> {
+        @Override
+        protected -- doInBackground( Void... params) {
 
-    }
+        }
+        @Override
+        protected void onPostExecute( -- ) {
+
+            }
+        }
+    }*/
+}
