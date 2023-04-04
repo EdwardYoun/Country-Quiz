@@ -15,8 +15,10 @@ import android.view.ViewGroup;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Random;
 import android.widget.RadioGroup;
 import android.widget.Button;
+
 
 
 /**
@@ -74,6 +76,28 @@ public class QuizFragment extends Fragment {
 
     private void setQuestion(Question question) {
 
+        int[] answerIndex = new int[] {0, 1, 2};
+        shuffle(answerIndex);
+        for (int i = 0; i < 3; i+=) {
+            answers[i].setText(question.getAnswerText(answerIndex[i]));
+            if (answerIndex[i] == question.getRightAnswer()) {
+                answers[i].setTag(true);
+            }else {
+                answers[i].setTag(false);
+            }
+        }
+        answerGroup.clearCheck(); // clear selections
+    }
+
+
+    public void shuffle(int[] array) {
+        Random rnd = new Random();
+        for (int i = array.length - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+            int temp = array[index];
+            array[index] = array[i];
+            array[i] = temp;
+        }
     }
 
     public static int getNumberOfQuestions() { return quests.length; }

@@ -23,4 +23,6 @@ public class QuizActivity extends AppCompatActivity {
                 ViewPager2.ORIENTATION_HORIZONTAL );
         pager.setAdapter( avpAdapter );
     }
+
+
 }
