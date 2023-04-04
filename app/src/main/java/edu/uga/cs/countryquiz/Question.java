@@ -13,34 +13,40 @@ public class Question {
     private String wrong1;
     private String wrong2;
 
+    private int correct;
+
+
     public Question()
     {
         this.country = null;
         this.continent = null;
         this.wrong1 = null;
         this.wrong2 = null;
+        this.correct = -1;
     }
 
-    public Question( String country, String continent, String wrong1, String wrong2) {
+    public Question( String country, String continent, String wrong1, String wrong2, int correct) {
         this.country = country;
         this.continent = continent;
         this.wrong1 = wrong1;
         this.wrong2 = wrong2;
+        this.correct = correct;
     }
 
     public String getCountry()
     {
-        return country;
-    }
+        return country;}
 
-    public void setCountry(String country) { this.country = country; }
+    public void setCountry(String country) {
+        this.country = country; }
 
     public String getContinent()
     {
         return continent;
     }
 
-    public void setContinent(String continent) { this.continent = continent; }
+    public void setContinent(String continent) {
+        this.continent = continent; }
 
     public String getWrong1()
     {
@@ -56,8 +62,16 @@ public class Question {
 
     public void setWrong2(String wrong2) { this.wrong2 = wrong2; }
 
+    public int getRightAnswer(){
+        return correct;
+    }
+
+    public void setRightAnswer(int correct){
+        this.correct = correct;
+    }
+
     public String toString()
     {
-        return country + " " + continent + " " + wrong1 + " " + wrong2;
+        return country + " " + continent + " " + wrong1 + " " + wrong2 + " " + correct;
     }
 }

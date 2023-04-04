@@ -14,20 +14,65 @@ public class CurrentQuiz {
     private Question q4;
     private Question q5;
     private Question q6;
+
+    private Question[] quests;
+    private int curQuest;
+
     private String date;
     private long curScore;
     private long ansQ;
 
     public CurrentQuiz() {
-        this.q1 = null;
-        this.q2 = null;
-        this.q3 = null;
-        this.q4 = null;
-        this.q5 = null;
-        this.q6 = null;
+        this.quests = new Question[6];
+        this.curQuest = 0;
         this.date = null;
         this.curScore = -1;
         this.ansQ = -1;
+    }
+
+    public void addQuest(Question question){
+        if (curQuest < 6) {
+            quests[curQuest] = question;
+            curQuest++;
+        }
+    }
+
+    public Question getCurQuest() {
+        if(curQuest < 6) {
+            return quests[curQuest];
+        } else {
+            return null;
+        }
+    }
+
+    public void setAnswer(long ansQ){
+        this.ansQ = ansQ;
+    }
+
+    public long getAnswer()
+    {
+        return ansQ;
+    }
+
+    public void setScore() {
+        if(getCurQuest().getRightAnswer() == ansQ) {
+            curScore++;
+        }
+    }
+
+    public long getScore() {
+        return curScore;
+    }
+
+    public boolean finishQuiz() {
+        return curQuest >= 6;
+    }
+
+    public void reset() {
+        this.quests = new Question[6];
+        this.curQuest = 0;
+        this.ansQ = -1;
+        this.curScore = 0;
     }
 
     public CurrentQuiz(Question q1, Question q2, Question q3, Question q4, Question q5, Question q6, String date, long curScore, long ansQ) {
