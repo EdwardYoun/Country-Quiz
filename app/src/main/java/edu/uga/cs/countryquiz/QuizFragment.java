@@ -108,15 +108,34 @@ public class QuizFragment extends Fragment {
         if (questNum == 6) {
             questionText.setVisibility(View.GONE);
             answers[0].setVisibility(View.GONE);
+            answers[1].setVisibility(View.GONE);
+            answers[2].setVisibility(View.GONE);
             answerGroup.setVisibility(View.GONE);
         }
         else {
             score.setVisibility(View.GONE);
             startNew.setVisibility(View.GONE);
             seeResults.setVisibility(View.GONE);
+
+            questionText.setText("Question " + num + ": What continent is " + quests[questNum].getCountry() + " from?");
+
+            if (quests[questNum].getRightAnswer() == 0) {
+                answers[0].setText("A: " + quests[questNum].getContinent());
+                answers[1].setText("B: " + quests[questNum].getWrong1());
+                answers[2].setText("C: " + quests[questNum].getWrong2());
+            }
+            else if (quests[questNum].getRightAnswer() == 1) {
+                answers[0].setText("A: " + quests[questNum].getWrong1());
+                answers[1].setText("B: " + quests[questNum].getContinent());
+                answers[2].setText("C: " + quests[questNum].getWrong2());
+            }
+            else {
+                answers[0].setText("A: " + quests[questNum].getWrong2());
+                answers[1].setText("B: " + quests[questNum].getWrong1());
+                answers[2].setText("C: " + quests[questNum].getContinent());
+            }
         }
 
-        questionText.setText(quests[questNum].toString());
     }
 
     private void setQuestions(Question[] quests) {
