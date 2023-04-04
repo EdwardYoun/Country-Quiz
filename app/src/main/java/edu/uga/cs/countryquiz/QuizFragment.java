@@ -117,6 +117,15 @@ public class QuizFragment extends Fragment {
             answers[1].setVisibility(View.GONE);
             answers[2].setVisibility(View.GONE);
             answerGroup.setVisibility(View.GONE);
+            int currentScore = (int) currentQuiz.getCurScore();
+            seeResults.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view){
+                    score.setText("Score: " + currentScore + " out of 6.");
+
+                }
+            });
+
+
         }
         else {
             score.setVisibility(View.GONE);
@@ -141,6 +150,7 @@ public class QuizFragment extends Fragment {
                 answers[2].setText("C: " + quests[questNum].getContinent());
             }
         }
+
 
     }
 
@@ -175,4 +185,7 @@ public class QuizFragment extends Fragment {
     }
 
     public static int getNumberOfQuestions() { return quests.length+1; } //push
-}
+
+
+
+    }
