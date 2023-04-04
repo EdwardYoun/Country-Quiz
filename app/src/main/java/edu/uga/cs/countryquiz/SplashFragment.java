@@ -78,6 +78,7 @@ public class SplashFragment extends Fragment{
         Button result = getView().findViewById(R.id.button2);
 
         quiz.setOnClickListener(new QuizListener());
+        result.setOnClickListener(new ResultListener());
 
 
         countriesList = new ArrayList<Country>();
@@ -99,6 +100,14 @@ public class SplashFragment extends Fragment{
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), QuizActivity.class );
+            startActivity(intent);
+        }
+    }
+
+    private class ResultListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(v.getContext(), ResultActivity.class );
             startActivity(intent);
         }
     }

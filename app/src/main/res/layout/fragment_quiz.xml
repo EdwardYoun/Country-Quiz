@@ -56,8 +56,7 @@
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="325dp"
+            android:layout_marginTop="108dp"
             android:layout_marginEnd="21dp"
             android:layout_marginBottom="155dp"
             android:text="See Results"
@@ -65,22 +64,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button4"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.585" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="21dp"
             android:layout_marginTop="108dp"
-            android:layout_marginEnd="96dp"
+            android:layout_marginEnd="21dp"
             android:layout_marginBottom="155dp"
             android:text="New Quiz!"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.583" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

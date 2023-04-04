@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Random;
 import android.widget.RadioGroup;
 import android.widget.Button;
@@ -31,6 +33,8 @@ import android.widget.Button;
  */
 public class QuizFragment extends Fragment {
 
+    private static final String TAG = "QuizFragment";
+
     private static Question[] quests = new Question[6];
 
     private View view;
@@ -42,10 +46,14 @@ public class QuizFragment extends Fragment {
     private Button seeResults;
     private CurrentQuiz currentQuiz;
 
-    //question number in quiz
+    //position in quiz
     private int questNum;
 
     private String date;
+
+    private List<Country> countriesList = new ArrayList<Country>();
+    private CountriesData countriesData = null;
+    private Random rand = new Random();
 
     public QuizFragment() {
         // Required empty public constructor
@@ -61,6 +69,9 @@ public class QuizFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            questNum = getArguments().getInt("questNum");
+        }
     }
 
     @Override
@@ -81,18 +92,18 @@ public class QuizFragment extends Fragment {
         };
         answerGroup = getView().findViewById(R.id.answer_choices);
         score = getView().findViewById(R.id.textView2);
-
-
-            startNew = getView().findViewById(R.id.button4);
-            seeResults = getView().findViewById(R.id.button3);
+        startNew = getView().findViewById(R.id.button4);
+        seeResults = getView().findViewById(R.id.button3);
 
 
         date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 
-        currentQuiz = new CurrentQuiz (quests, 0, date, 0, 0, 0);
-    }
+        setQuestions(quests);
 
-/*    private void setQuestion(Question question) {
+        currentQuiz = new CurrentQuiz (quests, 0, date, 0, 0, 0);
+
+        //question number
+        int num = questNum + 1;
 
         if (questNum == 6) {
             questionText.setVisibility(View.GONE);
@@ -105,31 +116,36 @@ public class QuizFragment extends Fragment {
             seeResults.setVisibility(View.GONE);
         }
 
-        int[] answerIndex = new int[] {0, 1, 2};
-        shuffle(answerIndex);
-        for (int i = 0; i < 3; i++) {
-            answers[i].setText(question.getAnswerText(answerIndex[i]));
-            if (answerIndex[i] == question.getRightAnswer()) {
-                answers[i].setTag(true);
-            }else {
-                answers[i].setTag(false);
-            }
-        }
-        answerGroup.clearCheck(); // clear selections
-    } */
+        questionText.setText(quests[questNum].toString());
+    }
 
+    private void setQuestions(Question[] quests) {
+        int randInt = -1;
+        int[] temp = {-1, -1, -1, -1, -1, -1};
+        int correct = -1;
 
-    public void shuffle(int[] array) {
-        Random rnd = new Random();
-        for (int i = array.length - 1; i > 0; i--) {
-            int index = rnd.nextInt(i + 1);
-            int temp = array[index];
-            array[index] = array[i];
-            array[i] = temp;
-        }
+        countriesData = new CountriesData(getActivity());
+        countriesData.open();
+        countriesList = countriesData.retrieveAllCountries();
         Country country = null;
+        String wrong1 = "";
+        String wrong2 = "";
         for (int i = 0; i < 6; i++) {
-
+            while (randInt == -1 || randInt == temp[0] || randInt == temp[1] || randInt == temp[2] || randInt == temp[3] || randInt == temp[4] || randInt == temp[5]) {
+                randInt = rand.nextInt(195);
+            }
+            country = countriesList.get(randInt);
+            temp[i] = randInt;
+            while (countriesList.get(randInt).getContinent().equals(country.getContinent())) {
+                randInt = rand.nextInt(195);
+            }
+            wrong1 = countriesList.get(randInt).getContinent();
+            while (countriesList.get(randInt).getContinent().equals(country.getContinent()) || countriesList.get(randInt).getContinent().equals(wrong1)) {
+                randInt = rand.nextInt(195);
+            }
+            wrong2 = countriesList.get(randInt).getContinent();
+            correct = rand.nextInt(3);
+            quests[i] = new Question(country.getName(), country.getContinent(), wrong1, wrong2, correct);
         }
     }
 

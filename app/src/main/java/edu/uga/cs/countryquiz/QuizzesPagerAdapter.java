@@ -1,5 +1,6 @@
 package edu.uga.cs.countryquiz;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -12,7 +13,7 @@ public class QuizzesPagerAdapter extends FragmentStateAdapter {
     }
 
     @Override
-    public QuizFragment createFragment(int questNum){
+    public Fragment createFragment(int questNum){
         return QuizFragment
                 .newInstance( questNum );
     }
