@@ -26,19 +26,25 @@ import android.widget.Button;
  */
 public class QuizFragment extends Fragment {
 
+    private static Question[] quests = new Question[6];
+
     private View view;
     private RadioButton[] answers;
     private RadioGroup answerGroup;
     private TextView questionText;
     private CurrentQuiz currentQuiz;
 
-
+    //question number in quiz
+    private int questNum;
 
     public QuizFragment() {
         // Required empty public constructor
     }
-    public static QuizFragment newInstance(String param1, String param2) {
+    public static QuizFragment newInstance(int questNum) {
         QuizFragment fragment = new QuizFragment();
+        Bundle args = new Bundle();
+        args.putInt( "questNum", questNum );
+        fragment.setArguments( args );
         return fragment;
     }
 
@@ -64,13 +70,11 @@ public class QuizFragment extends Fragment {
                 getView().findViewById(R.id.ans3)
         };
         answerGroup = getView().findViewById(R.id.answer_choices);
-
-        currentQuiz = ((QuizActivity) getActivity()).getCurrentQuiz();
-        setQuestion(currentQuiz.getCurQuest());
     }
 
     private void setQuestion(Question question) {
-        questionText.setText(question.getQuestionText());
 
     }
+
+    public static int getNumberOfQuestions() { return quests.length; }
 }
