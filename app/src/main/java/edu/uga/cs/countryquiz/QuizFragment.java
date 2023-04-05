@@ -56,7 +56,6 @@ public class QuizFragment extends Fragment {
     private int questNum;
     //score of quiz
     private int quizScore;
-    boolean correct;
 
     private String date;
 
@@ -119,13 +118,13 @@ public class QuizFragment extends Fragment {
             Log.d(TAG, "quests already added");
         }
 
+        //question number
+        int num = questNum + 1;
+        quizScore = quests[0].getPoint() + quests[1].getPoint() + quests[2].getPoint() + quests[3].getPoint() + quests[4].getPoint() + quests[5].getPoint();
+
         Log.d(TAG, "Current questNum: " + questNum);
         Log.d(TAG, "Current date: " + date);
         Log.d(TAG, "Current Score: " + quizScore);
-
-        //question number
-        int num = questNum + 1;
-        correct = false;
 
         if (questNum == 6) {
             questionText.setVisibility(View.GONE);
@@ -193,7 +192,7 @@ public class QuizFragment extends Fragment {
             }
             wrong2 = countriesList.get(randInt).getContinent();
             correct = rand.nextInt(3);
-            quests[i] = new Question(country.getName(), country.getContinent(), wrong1, wrong2, correct);
+            quests[i] = new Question(country.getName(), country.getContinent(), wrong1, wrong2, correct, 0);
         }
     }
 
@@ -203,12 +202,12 @@ public class QuizFragment extends Fragment {
         @Override
         public void onClick(View v) {
             if (quests[questNum].getRightAnswer() == 0) {
-                correct = true;
-                Log.d(TAG, "state: " + correct);
+                quests[questNum].setPoint(1);
+                Log.d(TAG, "state: " + quests[questNum].getPoint());
             }
             else {
-                correct = false;
-                Log.d(TAG, "state: " + correct);
+                quests[questNum].setPoint(0);
+                Log.d(TAG, "state: " + quests[questNum].getPoint());
             }
         }
     }
@@ -217,12 +216,12 @@ public class QuizFragment extends Fragment {
         @Override
         public void onClick(View v) {
             if (quests[questNum].getRightAnswer() == 1) {
-                correct = true;
-                Log.d(TAG, "state: " + correct);
+                quests[questNum].setPoint(1);
+                Log.d(TAG, "state: " + quests[questNum].getPoint());
             }
             else {
-                correct = false;
-                Log.d(TAG, "state: " + correct);
+                quests[questNum].setPoint(0);
+                Log.d(TAG, "state: " + quests[questNum].getPoint());
             }
         }
     }
@@ -231,12 +230,12 @@ public class QuizFragment extends Fragment {
         @Override
         public void onClick(View v) {
             if (quests[questNum].getRightAnswer() == 2) {
-                correct = true;
-                Log.d(TAG, "state: " + correct);
+                quests[questNum].setPoint(1);
+                Log.d(TAG, "state: " + quests[questNum].getPoint());
             }
             else {
-                correct = false;
-                Log.d(TAG, "state: " + correct);
+                quests[questNum].setPoint(0);
+                Log.d(TAG, "state: " + quests[questNum].getPoint());
             }
         }
     }

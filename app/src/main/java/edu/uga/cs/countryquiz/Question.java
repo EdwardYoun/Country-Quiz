@@ -14,6 +14,7 @@ public class Question {
     private String wrong2;
 
     private int correct;
+    private int point;
 
 
 
@@ -24,14 +25,16 @@ public class Question {
         this.wrong1 = null;
         this.wrong2 = null;
         this.correct = -1;
+        this.point = -1;
     }
 
-    public Question( String country, String continent, String wrong1, String wrong2, int correct) {
+    public Question( String country, String continent, String wrong1, String wrong2, int correct, int point) {
         this.country = country;
         this.continent = continent;
         this.wrong1 = wrong1;
         this.wrong2 = wrong2;
         this.correct = correct;
+        this.point = point;
     }
 
     public String getCountry()
@@ -71,9 +74,17 @@ public class Question {
         this.correct = correct;
     }
 
+    public int getPoint(){
+        return point;
+    }
+
+    public void setPoint(int point){
+        this.point = point;
+    }
+
     public String toString()
     {
-        return country + " " + continent + " " + wrong1 + " " + wrong2 + " " + correct;
+        return country + " " + continent + " " + wrong1 + " " + wrong2 + " " + correct + " " + point;
     }
 
 }
