@@ -13,16 +13,12 @@ public class CurrentQuiz {
     private int curQuest;
     private String date;
     private long curScore;
-    //questions answered
-    private long ansQ;
-    //user's answer
 
     public CurrentQuiz() {
         this.quests = new Question[6];
         this.curQuest = 0;
         this.date = null;
         this.curScore = 0;
-        this.ansQ = 0;
     }
 
     public void addQuest(Question question){
@@ -53,25 +49,21 @@ public class CurrentQuiz {
     public void reset() {
         this.quests = new Question[6];
         this.curQuest = 0;
-        this.ansQ = 0;
         this.curScore = 0;
     }
 
-    public CurrentQuiz(Question[] quests, int curQuest, String date, long curScore, long ansQ) {
+    public CurrentQuiz(Question[] quests, int curQuest, String date, long curScore) {
         this.quests = quests;
         this.curQuest = curQuest;
         this.date = date;
         this.curScore = curScore;
-        this.ansQ = ansQ;
     }
 
     public String getDate() { return date; }
     public void setDate(String date) {this.date = date; }
-    public long getAnsQ() { return ansQ; }
-    public void setAnsQ(long ansQ) { this.ansQ = ansQ; }
 
     public String toString()
     {
-        return quests + " " + curQuest + " " + date + " " + curScore + " " + ansQ;
+        return quests + " " + curQuest + " " + date + " " + curScore;
     }
 }

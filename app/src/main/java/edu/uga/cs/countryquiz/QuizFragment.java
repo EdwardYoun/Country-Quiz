@@ -1,6 +1,7 @@
 package edu.uga.cs.countryquiz;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -55,10 +56,6 @@ public class QuizFragment extends Fragment {
     private int questNum;
     //score of quiz
     private int quizScore;
-    //questions answered
-    private int questAns;
-    //user's answer
-    private int userAns;
 
     private String date;
 
@@ -105,6 +102,9 @@ public class QuizFragment extends Fragment {
         score = getView().findViewById(R.id.textView2);
         startNew = getView().findViewById(R.id.button4);
         seeResults = getView().findViewById(R.id.button3);
+        answers[0].setOnClickListener(new CheckListener0());
+        answers[1].setOnClickListener(new CheckListener1());
+        answers[2].setOnClickListener(new CheckListener2());
 
         date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 
@@ -116,7 +116,10 @@ public class QuizFragment extends Fragment {
             Log.d(TAG, "quests already added");
         }
 
-        currentQuiz = new CurrentQuiz (quests, questNum, date, 0, 0);
+        currentQuiz = new CurrentQuiz (quests, questNum, date, quizScore);
+        Log.d(TAG, "Current questNum: " + questNum);
+        Log.d(TAG, "Current date: " + currentQuiz.getDate());
+        Log.d(TAG, "Current Score: " + currentQuiz.getCurScore());
 
         //question number
         int num = questNum + 1;
@@ -127,6 +130,8 @@ public class QuizFragment extends Fragment {
             answers[1].setVisibility(View.GONE);
             answers[2].setVisibility(View.GONE);
             answerGroup.setVisibility(View.GONE);
+
+            score.setText("Score: " + quizScore);
 
             //new QuizFragment.QuizzesDBWriter().execute();
 
@@ -189,6 +194,45 @@ public class QuizFragment extends Fragment {
     }
 
     public static int getNumberOfQuestions() { return quests.length+1; } //push
+
+    private class CheckListener0 implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            if (quests[questNum].getRightAnswer() == 0) {
+                quizScore = quizScore + 1;
+                Log.d(TAG, "+1 to score");
+            }
+            else {
+                Log.d(TAG, "Wrong");
+            }
+        }
+    }
+
+    private class CheckListener1 implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            if (quests[questNum].getRightAnswer() == 1) {
+                quizScore = quizScore + 1;
+                Log.d(TAG, "+1 to score");
+            }
+            else {
+                Log.d(TAG, "Wrong");
+            }
+        }
+    }
+
+    private class CheckListener2 implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            if (quests[questNum].getRightAnswer() == 2) {
+                quizScore = quizScore + 1;
+                Log.d(TAG, "+1 to score");
+            }
+            else {
+                Log.d(TAG, "Wrong");
+            }
+        }
+    }
 
 
     /*
