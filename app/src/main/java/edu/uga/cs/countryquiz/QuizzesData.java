@@ -110,7 +110,9 @@ public class QuizzesData {
         return quizzes;
     }
 
-    // Store a new quiz in the database.
+    /**
+     * Store a new quiz in the database.
+     */
     public Quiz storeQuiz( Quiz quiz ) {
 
         // Prepare the values for all of the necessary columns in the table

@@ -11,8 +11,9 @@ package edu.uga.cs.countryquiz;
  */
 public class CurrentQuiz {
 
+    //array of quiz questions
     private Question[] quests;
-    //reference of array position, not current question otherwise it would be 1, not 0
+    //reference of array position
     private int curQuest;
     private String date;
     private int curScore;
@@ -24,6 +25,10 @@ public class CurrentQuiz {
         this.curScore = 0;
     }
 
+    /**
+     * Adds questions to the array.
+     * @param question
+     */
     public void addQuest(Question question){
         if (curQuest < 6) {
             quests[curQuest] = question;
@@ -31,6 +36,10 @@ public class CurrentQuiz {
         }
     }
 
+    /**
+     * Returns question at curQuest index of question array.
+     * @return
+     */
     public Question getCurQuest() {
         if(curQuest < 6) {
             return quests[curQuest];
@@ -39,16 +48,23 @@ public class CurrentQuiz {
         }
     }
 
+
     public void setCurScore(int curScore) { this.curScore = curScore; }
 
+    /**
+     * Returns current score.
+     * @return
+     */
     public int getCurScore() {
         return curScore;
     }
 
+    // Checks state of quiz.
     public boolean finishQuiz() {
         return curQuest >= 6;
     }
 
+    //Resets quiz to inital state.
     public void reset() {
         this.quests = new Question[6];
         this.curQuest = 0;
@@ -56,6 +72,7 @@ public class CurrentQuiz {
         this.curScore = 0;
     }
 
+    //CurrentQuiz object.
     public CurrentQuiz(Question[] quests, int curQuest, String date, int curScore) {
         this.quests = quests;
         this.curQuest = curQuest;
@@ -63,6 +80,7 @@ public class CurrentQuiz {
         this.curScore = curScore;
     }
 
+    // Return date quiz was taken.
     public String getDate() { return date; }
     public void setDate(String date) {this.date = date; }
 
