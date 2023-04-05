@@ -116,10 +116,9 @@ public class QuizFragment extends Fragment {
             Log.d(TAG, "quests already added");
         }
 
-        currentQuiz = new CurrentQuiz (quests, questNum, date, quizScore);
         Log.d(TAG, "Current questNum: " + questNum);
-        Log.d(TAG, "Current date: " + currentQuiz.getDate());
-        Log.d(TAG, "Current Score: " + currentQuiz.getCurScore());
+        Log.d(TAG, "Current date: " + date);
+        Log.d(TAG, "Current Score: " + quizScore);
 
         //question number
         int num = questNum + 1;
@@ -133,6 +132,7 @@ public class QuizFragment extends Fragment {
 
             score.setText("Score: " + quizScore);
 
+            currentQuiz = new CurrentQuiz (quests, questNum, date, quizScore);
             //new QuizFragment.QuizzesDBWriter().execute();
 
         }
