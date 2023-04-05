@@ -62,13 +62,23 @@ public class ResultFragment extends Fragment {
                         TableRow.LayoutParams.WRAP_CONTENT );
         layoutParams.setMargins(20, 0, 20, 0);
 
+        TableRow tableRow = new TableRow( getContext() );
+        TextView textView1 = new TextView( getContext() );
+        TextView textView2 = new TextView( getContext() );
+        textView1.setText("Date Of Quiz Taken");
+        textView2.setText("Score Of Quiz (Max: 6)");
+        tableRow.addView( textView1, layoutParams );
+        tableRow.addView( textView2, layoutParams );
+        // add the next row to the table layout
+        tableLayout.addView( tableRow );
+
         for (int i = 0; i < quizzesList.size(); i++) {
-            TableRow tableRow = new TableRow( getContext() );
-            TextView textView1 = new TextView( getContext() );
-            TextView textView2 = new TextView( getContext() );
+            tableRow = new TableRow( getContext() );
+            textView1 = new TextView( getContext() );
+            textView2 = new TextView( getContext() );
 
             textView1.setText(quizzesList.get(i).getDate());
-            textView2.setText(quizzesList.get(i).getResult());
+            textView2.setText(String.valueOf(quizzesList.get(i).getResult()));
             tableRow.addView( textView1, layoutParams );
             tableRow.addView( textView2, layoutParams );
             // add the next row to the table layout
