@@ -27,6 +27,10 @@ public class QuizzesData {
             QuizzesDBHelper.QUIZZES_COLUMN_RESULT
     };
 
+    /**
+     * Creates an instance of quizzesDbHelper
+     * @param context the current context of the app
+     */
     public QuizzesData( Context context ) {
         this.quizzesDbHelper = QuizzesDBHelper.getInstance( context );
     }
