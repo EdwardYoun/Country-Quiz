@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is facilitates storing and restoring countries stored.
+ * This class facilitates storing and restoring countries stored in the database.
  */
 public class CountriesData {
 
@@ -20,12 +20,18 @@ public class CountriesData {
     // this is a reference to our database; it is used later to run SQL commands
     private SQLiteDatabase   db;
     private SQLiteOpenHelper countriesDbHelper;
+
+    //country info in db
     private static final String[] allColumns = {
             CountriesDBHelper.COUNTRIES_COLUMN_ID,
             CountriesDBHelper.COUNTRIES_COLUMN_NAME,
             CountriesDBHelper.COUNTRIES_COLUMN_CONTINENT
     };
 
+    /**
+     * Constructor creates CountriesDBHelper to manage database.
+     * @param context
+     */
     public CountriesData( Context context ) {
         this.countriesDbHelper = CountriesDBHelper.getInstance( context );
     }
@@ -44,14 +50,19 @@ public class CountriesData {
         }
     }
 
+    /**
+     * Boolean to check if the database is open.
+     * @return
+     */
     public boolean isDBOpen()
     {
         return db.isOpen();
     }
 
-    // Retrieve all countries and return them as a List.
-    // This is how we restore persistent objects stored as rows in the countries table in the database.
-    // For each retrieved row, we create a new Country (Java POJO object) instance and add it to the list.
+    /** Retrieve all countries and return them as a List.
+     *This is how we restore persistent objects stored as rows in the countries table in the database.
+     *For each retrieved row, we create a new Country (Java POJO object) instance and add it to the list.
+     */
     public List<Country> retrieveAllCountries() {
         ArrayList<Country> countries = new ArrayList<>();
         Cursor cursor = null;
@@ -69,7 +80,7 @@ public class CountriesData {
 
                     if( cursor.getColumnCount() >= 3) {
 
-                        // get all attribute values of this country
+                        //get all attribute values of this country
                         columnIndex = cursor.getColumnIndex( CountriesDBHelper.COUNTRIES_COLUMN_ID );
                         long id = cursor.getLong( columnIndex );
                         columnIndex = cursor.getColumnIndex( CountriesDBHelper.COUNTRIES_COLUMN_NAME );
@@ -77,7 +88,7 @@ public class CountriesData {
                         columnIndex = cursor.getColumnIndex( CountriesDBHelper.COUNTRIES_COLUMN_CONTINENT );
                         String continent = cursor.getString( columnIndex );
 
-                        // create a new Country object and set its state to the retrieved values
+                        //Create a new Country object and set its state to the retrieved values.
                         Country country = new Country( name, continent );
                         country.setId(id); // set the id (the primary key) of this object
                         // add it to the list
@@ -104,7 +115,11 @@ public class CountriesData {
         return countries;
     }
 
-    // Store a new country in the database.
+    /**
+     * Store a new country in the database.
+     * @param country
+     * @return
+     */
     public Country storeCountry( Country country ) {
 
         // Prepare the values for all of the necessary columns in the table

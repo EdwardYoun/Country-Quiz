@@ -15,6 +15,11 @@ import android.widget.Button;
  */
 public class QuizActivity extends AppCompatActivity {
 
+    /**
+     * Sets view for QuizActivity. Initializes ViewPager2 for swiping
+     * in the UI to navigate between the questions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

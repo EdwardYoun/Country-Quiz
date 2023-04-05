@@ -109,7 +109,9 @@ public class SplashFragment extends Fragment{
         }
     }
 
-    //New Quiz Listener
+    /**
+     * New Quiz Listener
+     */
     private class QuizListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -117,7 +119,10 @@ public class SplashFragment extends Fragment{
             startActivity(intent);
         }
     }
-    // See Results Listener
+
+    /**
+     * See Results Listener
+     */
     private class ResultListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
