@@ -10,14 +10,20 @@ public class Question {
 
     private String country;
     private String continent;
+    //wrong answer 1
     private String wrong1;
+    //wrong answer 2
     private String wrong2;
 
+    //which of the three options is correct
     private int correct;
+    //if the question got a point or not
     private int point;
 
 
-
+    /**
+     * default values
+     */
     public Question()
     {
         this.country = null;
@@ -28,6 +34,15 @@ public class Question {
         this.point = -1;
     }
 
+    /**
+     * constructor of Question object
+     * @param country name of country
+     * @param continent continent of country
+     * @param wrong1 incorrect answer
+     * @param wrong2 incorrect answer
+     * @param correct which radio button is correct
+     * @param point score on question
+     */
     public Question( String country, String continent, String wrong1, String wrong2, int correct, int point) {
         this.country = country;
         this.continent = continent;

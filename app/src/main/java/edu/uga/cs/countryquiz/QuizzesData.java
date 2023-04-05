@@ -35,13 +35,17 @@ public class QuizzesData {
         this.quizzesDbHelper = QuizzesDBHelper.getInstance( context );
     }
 
-    // Open the database
+    /**
+     * opens the countries database
+     */
     public void open() {
         db = quizzesDbHelper.getWritableDatabase();
         Log.d( DEBUG_TAG, "QuizzesData: db open" );
     }
 
-    // Close the database
+    /**
+     * closes the countries database
+     */
     public void close() {
         if( quizzesDbHelper != null ) {
             quizzesDbHelper.close();
@@ -112,6 +116,8 @@ public class QuizzesData {
 
     /**
      * Store a new quiz in the database.
+     * @param quiz quiz object that will be stored
+     * @return quiz that was just stored
      */
     public Quiz storeQuiz( Quiz quiz ) {
 

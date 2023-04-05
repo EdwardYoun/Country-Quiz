@@ -135,6 +135,11 @@ public class SplashFragment extends Fragment{
      * Gets the countries and continents information from the database.
      */
     private class CountriesDBWriter extends AsyncTask<Void, InputStream> {
+        /**
+         * do in background
+         * @param params nothing
+         * @return inputstream for onPostExecute
+         */
         @Override
         protected InputStream doInBackground( Void... params) {
             Context context = getContext();
@@ -145,6 +150,12 @@ public class SplashFragment extends Fragment{
                 throw new RuntimeException(e);
             }
         }
+
+        /**
+         * on post execute to start reading the cvs file and importing the info into the
+         * countries database
+         * @param in_s inputstream of cvs file
+         */
         @Override
         protected void onPostExecute( InputStream in_s) {
             // read the CSV data

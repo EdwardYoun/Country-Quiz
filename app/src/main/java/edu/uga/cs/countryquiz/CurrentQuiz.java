@@ -15,9 +15,14 @@ public class CurrentQuiz {
     private Question[] quests;
     //reference of array position
     private int curQuest;
+    //date of quiz
     private String date;
+    //current score in the quiz so far
     private int curScore;
 
+    /**
+     * default values of CurrentQuiz object
+     */
     public CurrentQuiz() {
         this.quests = new Question[6];
         this.curQuest = 0;
@@ -27,7 +32,7 @@ public class CurrentQuiz {
 
     /**
      * Adds questions to the array.
-     * @param question
+     * @param question question used for quiz
      */
     public void addQuest(Question question){
         if (curQuest < 6) {
@@ -38,7 +43,7 @@ public class CurrentQuiz {
 
     /**
      * Returns question at curQuest index of question array.
-     * @return
+     * @return question in position or nothing if there is no question in the array position
      */
     public Question getCurQuest() {
         if(curQuest < 6) {
@@ -53,26 +58,19 @@ public class CurrentQuiz {
 
     /**
      * Returns current score.
-     * @return
+     * @return the current score of the quiz
      */
     public int getCurScore() {
         return curScore;
     }
 
-    // Checks state of quiz.
-    public boolean finishQuiz() {
-        return curQuest >= 6;
-    }
-
-    //Resets quiz to inital state.
-    public void reset() {
-        this.quests = new Question[6];
-        this.curQuest = 0;
-        this.date = null;
-        this.curScore = 0;
-    }
-
-    //CurrentQuiz object.
+    /**
+     * constructor of CurrentQuiz
+     * @param quests questions for quiz
+     * @param curQuest current question position in array
+     * @param date date of quiz
+     * @param curScore current score of quiz
+     */
     public CurrentQuiz(Question[] quests, int curQuest, String date, int curScore) {
         this.quests = quests;
         this.curQuest = curQuest;

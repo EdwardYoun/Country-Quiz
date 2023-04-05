@@ -36,13 +36,18 @@ public class CountriesData {
         this.countriesDbHelper = CountriesDBHelper.getInstance( context );
     }
 
+    /**
+     * opens the countries database
+     */
     // Open the database
     public void open() {
         db = countriesDbHelper.getWritableDatabase();
         Log.d( DEBUG_TAG, "CountriesData: db open" );
     }
 
-    // Close the database
+    /**
+     * closes the countries database
+     */
     public void close() {
         if( countriesDbHelper != null ) {
             countriesDbHelper.close();
@@ -117,8 +122,8 @@ public class CountriesData {
 
     /**
      * Store a new country in the database.
-     * @param country
-     * @return
+     * @param country country object that will be stored
+     * @return country that was just stored
      */
     public Country storeCountry( Country country ) {
 

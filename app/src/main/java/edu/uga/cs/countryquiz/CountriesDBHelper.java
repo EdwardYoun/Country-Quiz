@@ -42,14 +42,15 @@ public class CountriesDBHelper extends SQLiteOpenHelper {
 
     /**
      * Constructor
+     * @param context current context of app used
      */
-
     private CountriesDBHelper( Context context ) {
         super( context, DB_NAME, null, DB_VERSION );
     }
 
-    /** Access method t o the single instance of the class.
+    /** Access method to the single instance of the class.
      * It is synchronized, so that only one thread can executes this method, at a time.
+     * @param context current context of app used
      */
     public static synchronized CountriesDBHelper getInstance( Context context ) {
         // check if the instance already exists and if not, create the instance
@@ -61,6 +62,7 @@ public class CountriesDBHelper extends SQLiteOpenHelper {
 
     /**
      * Create the database if it does not exist yet.
+     * @param db database
      */
     @Override
     public void onCreate( SQLiteDatabase db ) {
@@ -71,6 +73,9 @@ public class CountriesDBHelper extends SQLiteOpenHelper {
     /** Used to upgrade the database if
      * its version (DB_VERSION) has changed.  This will be done automatically by Android
      * if the version will be bumped up, as we modify the database schema.
+     * @param db database
+     * @param oldVersion old version of database
+     * @param newVersion new version of database
      */
     @Override
     public void onUpgrade( SQLiteDatabase db, int oldVersion, int newVersion ) {

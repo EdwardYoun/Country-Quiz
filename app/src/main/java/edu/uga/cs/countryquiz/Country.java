@@ -8,9 +8,14 @@ package edu.uga.cs.countryquiz;
  */
 public class Country {
     private long   id;
+    //name of country
     private String name;
+    //name of country's continent
     private String continent;
 
+    /**
+     * default values
+     */
     public Country()
     {
         this.id = -1;
@@ -18,6 +23,11 @@ public class Country {
         this.continent = null;
     }
 
+    /**
+     * constructor of Country
+     * @param name name of country
+     * @param continent continent the country is from
+     */
     public Country( String name, String continent) {
         this.id = -1;  // the primary key id will be set by a setter method
         this.name = name;
@@ -45,6 +55,10 @@ public class Country {
 
     public void setContinent(String continent) { this.continent = continent; }
 
+    /**
+     * return values inside object as a line of string
+     * @return values of object in string format
+     */
     public String toString()
     {
         return id + ": " + name + " " + continent;

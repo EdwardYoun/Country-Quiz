@@ -12,12 +12,21 @@ public class QuizzesPagerAdapter extends FragmentStateAdapter {
         super( fragmentManager, lifecycle );
     }
 
+    /**
+     * remember the position of the fragment for displaying info
+     * @param questNum question number
+     * @return new fragment instance
+     */
     @Override
     public Fragment createFragment(int questNum){
         return QuizFragment
                 .newInstance( questNum );
     }
 
+    /**
+     * get number of questions + 1 more for the result screen
+     * @return number of questions + 1
+     */
     @Override
     public int getItemCount() {
         return QuizFragment

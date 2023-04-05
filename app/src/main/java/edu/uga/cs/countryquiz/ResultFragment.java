@@ -31,6 +31,10 @@ public class ResultFragment extends Fragment {
         // Required empty public constructor
     }
 
+    /**
+     * makes new instance of result fragment
+     * @return fragment
+     */
     public static ResultFragment newInstance() {
         ResultFragment fragment = new ResultFragment();
         return fragment;

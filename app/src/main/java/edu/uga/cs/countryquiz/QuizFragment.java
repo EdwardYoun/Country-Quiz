@@ -163,6 +163,7 @@ public class QuizFragment extends Fragment {
 
         //question number
         int num = questNum + 1;
+        //score is all the points added together from the questions
         quizScore = quests[0].getPoint() + quests[1].getPoint() + quests[2].getPoint() + quests[3].getPoint() + quests[4].getPoint() + quests[5].getPoint();
 
         Log.d(TAG, "Current questNum: " + questNum);
@@ -192,6 +193,7 @@ public class QuizFragment extends Fragment {
 
             questionText.setText("Question " + num + ": What continent is " + quests[questNum].getCountry() + " from?");
 
+            //position of correct answer depends on quests[questNum].getRightAnswer()
             if (quests[questNum].getRightAnswer() == 0) {
                 answers[0].setText("A: " + quests[questNum].getContinent());
                 answers[1].setText("B: " + quests[questNum].getWrong1());
@@ -215,7 +217,7 @@ public class QuizFragment extends Fragment {
     /**
      * Sets the questions randomly. Chooses a country to base its question and gets the
      * correct answer along with two incorrect answers.
-     * @param quests
+     * @param quests the questions
      */
     private void setQuestions(Question[] quests) {
         int randInt = -1;
@@ -229,15 +231,18 @@ public class QuizFragment extends Fragment {
         String wrong1 = "";
         String wrong2 = "";
         for (int i = 0; i < 6; i++) {
+            //makes sure no duplicates
             while (randInt == -1 || randInt == temp[0] || randInt == temp[1] || randInt == temp[2] || randInt == temp[3] || randInt == temp[4] || randInt == temp[5]) {
                 randInt = rand.nextInt(195);
             }
             country = countriesList.get(randInt);
             temp[i] = randInt;
+            //makes sure continents don't match
             while (countriesList.get(randInt).getContinent().equals(country.getContinent())) {
                 randInt = rand.nextInt(195);
             }
             wrong1 = countriesList.get(randInt).getContinent();
+            //make sure continent doesn't match with the current two
             while (countriesList.get(randInt).getContinent().equals(country.getContinent()) || countriesList.get(randInt).getContinent().equals(wrong1)) {
                 randInt = rand.nextInt(195);
             }

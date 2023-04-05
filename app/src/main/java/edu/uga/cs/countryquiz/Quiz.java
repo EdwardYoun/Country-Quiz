@@ -13,6 +13,9 @@ public class Quiz {
     private String date;
     private int result;
 
+    /**
+     * default values
+     */
     public Quiz()
     {
         this.id = -1;
@@ -20,6 +23,11 @@ public class Quiz {
         this.result = -1;
     }
 
+    /**
+     * constructor of Quiz object
+     * @param date date of quiz
+     * @param result result score at the end of the quiz
+     */
     public Quiz( String date, int result) {
         this.id = -1;  // the primary key id will be set by a setter method
         this.date = date;

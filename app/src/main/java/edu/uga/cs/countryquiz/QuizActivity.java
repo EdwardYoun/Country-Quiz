@@ -18,7 +18,7 @@ public class QuizActivity extends AppCompatActivity {
     /**
      * Sets view for QuizActivity. Initializes ViewPager2 for swiping
      * in the UI to navigate between the questions.
-     * @param savedInstanceState
+     * @param savedInstanceState saved instance of the app
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
