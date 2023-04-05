@@ -56,6 +56,7 @@ public class QuizFragment extends Fragment {
     private int questNum;
     //score of quiz
     private int quizScore;
+    boolean correct;
 
     private String date;
 
@@ -124,6 +125,7 @@ public class QuizFragment extends Fragment {
 
         //question number
         int num = questNum + 1;
+        correct = false;
 
         if (questNum == 6) {
             questionText.setVisibility(View.GONE);
@@ -201,11 +203,12 @@ public class QuizFragment extends Fragment {
         @Override
         public void onClick(View v) {
             if (quests[questNum].getRightAnswer() == 0) {
-                quizScore = quizScore + 1;
-                Log.d(TAG, "+1 to score");
+                correct = true;
+                Log.d(TAG, "state: " + correct);
             }
             else {
-                Log.d(TAG, "Wrong");
+                correct = false;
+                Log.d(TAG, "state: " + correct);
             }
         }
     }
@@ -214,11 +217,12 @@ public class QuizFragment extends Fragment {
         @Override
         public void onClick(View v) {
             if (quests[questNum].getRightAnswer() == 1) {
-                quizScore = quizScore + 1;
-                Log.d(TAG, "+1 to score");
+                correct = true;
+                Log.d(TAG, "state: " + correct);
             }
             else {
-                Log.d(TAG, "Wrong");
+                correct = false;
+                Log.d(TAG, "state: " + correct);
             }
         }
     }
@@ -227,11 +231,12 @@ public class QuizFragment extends Fragment {
         @Override
         public void onClick(View v) {
             if (quests[questNum].getRightAnswer() == 2) {
-                quizScore = quizScore + 1;
-                Log.d(TAG, "+1 to score");
+                correct = true;
+                Log.d(TAG, "state: " + correct);
             }
             else {
-                Log.d(TAG, "Wrong");
+                correct = false;
+                Log.d(TAG, "state: " + correct);
             }
         }
     }
