@@ -105,6 +105,8 @@ public class QuizFragment extends Fragment {
         answers[0].setOnClickListener(new CheckListener0());
         answers[1].setOnClickListener(new CheckListener1());
         answers[2].setOnClickListener(new CheckListener2());
+        startNew.setOnClickListener(new NewListener());
+        seeResults.setOnClickListener(new ResultListener());
 
         date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 
@@ -130,9 +132,9 @@ public class QuizFragment extends Fragment {
             answers[2].setVisibility(View.GONE);
             answerGroup.setVisibility(View.GONE);
 
-            score.setText("Score: " + quizScore);
+            score.setText("Score: " + quizScore + "/6");
 
-            currentQuiz = new CurrentQuiz (quests, questNum, date, quizScore);
+            currentQuiz = new CurrentQuiz (quests, questNum-1, date, quizScore);
             //new QuizFragment.QuizzesDBWriter().execute();
 
         }
@@ -231,6 +233,30 @@ public class QuizFragment extends Fragment {
             else {
                 Log.d(TAG, "Wrong");
             }
+        }
+    }
+
+    private class NewListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            quests[0] = null;
+            quests[1] = null;
+            quests[2] = null;
+            quests[3] = null;
+            quests[4] = null;
+            quests[5] = null;
+            date = null;
+            quizScore = 0;
+            Intent intent = new Intent(v.getContext(), QuizActivity.class );
+            startActivity(intent);
+        }
+    }
+
+    private class ResultListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(v.getContext(), ResultActivity.class );
+            startActivity(intent);
         }
     }
 

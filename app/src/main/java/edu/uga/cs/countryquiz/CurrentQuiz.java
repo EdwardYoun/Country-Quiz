@@ -49,6 +49,7 @@ public class CurrentQuiz {
     public void reset() {
         this.quests = new Question[6];
         this.curQuest = 0;
+        this.date = null;
         this.curScore = 0;
     }
 
