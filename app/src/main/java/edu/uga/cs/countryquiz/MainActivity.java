@@ -12,7 +12,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
- * The main activity class. Push Test
+ * The main activity class.
  */
 public class MainActivity extends AppCompatActivity {
 

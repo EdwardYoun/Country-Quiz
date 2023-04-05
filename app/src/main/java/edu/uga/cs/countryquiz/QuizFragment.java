@@ -36,21 +36,27 @@ import com.opencsv.exceptions.CsvValidationException;
  * A simple {@link Fragment} subclass.
  * Use the {@link QuizFragment#newInstance} factory method to
  * create an instance of this fragment.
+ *
+ * Implements the quiz for the user to test their knowledge of countries and the
+ * continents they are located in. There are 6 questions for each quiz with 3 answer
+ * choices for each question.
  */
 public class QuizFragment extends Fragment {
 
     private static final String TAG = "QuizFragment";
 
-    private static Question[] quests = new Question[6];
+    private static Question[] quests = new Question[6]; // array of question objects
 
     private View view;
+
+    // UI elements
     private RadioButton[] answers;
     private RadioGroup answerGroup;
-    private TextView questionText;
+    private TextView questionText; // UI elements
     private TextView score;
     private Button startNew;
     private Button seeResults;
-    private CurrentQuiz currentQuiz;
+    private CurrentQuiz currentQuiz; // for saving quiz results
     private QuizzesData quizzesData = null;
 
     //position in quiz
@@ -89,6 +95,16 @@ public class QuizFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_quiz, container, false);
     }
 
+    /**
+     *
+     * @param view The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     *
+     * Creates the quiz view. Randomizes answers, hides score and buttons until end.
+     * Once a user completes the questions and arrives on the last page, they will be shown their
+     * score and given the option to take a new quiz or see their results from past attempts.
+     */
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState ) {
         super.onViewCreated( view, savedInstanceState );
@@ -111,6 +127,7 @@ public class QuizFragment extends Fragment {
 
         date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 
+        // log info for testing
         if (quests[0] == null) {
             setQuestions(quests);
             Log.d(TAG, "added quests");
@@ -127,6 +144,7 @@ public class QuizFragment extends Fragment {
         Log.d(TAG, "Current date: " + date);
         Log.d(TAG, "Current Score: " + quizScore);
 
+        // When the user arrives on the last page
         if (questNum == 6) {
             questionText.setVisibility(View.GONE);
             answers[0].setVisibility(View.GONE);
@@ -169,6 +187,11 @@ public class QuizFragment extends Fragment {
 
     }
 
+    /**
+     * Sets the questions randomly. Chooses a country to base its question and gets the
+     * correct answer along with two incorrect answers.
+     * @param quests
+     */
     private void setQuestions(Question[] quests) {
         int randInt = -1;
         int[] temp = {-1, -1, -1, -1, -1, -1};
@@ -201,6 +224,10 @@ public class QuizFragment extends Fragment {
 
     public static int getNumberOfQuestions() { return quests.length+1; } //push
 
+    /**
+     * CheckListeners 0, 1, and 2 check the users input for the correct answer.
+     * The user's score is increased when they select the correct answer.
+     */
     private class CheckListener0 implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -243,6 +270,10 @@ public class QuizFragment extends Fragment {
         }
     }
 
+    /**
+     * Resets the quiz data and starts a new quiz when the "New Quiz!"
+     * button is clicked.
+     */
     private class NewListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -259,6 +290,9 @@ public class QuizFragment extends Fragment {
         }
     }
 
+    /**
+     * Displays past quiz results when the "See Results!" button is clicked.
+     */
     private class ResultListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -268,7 +302,10 @@ public class QuizFragment extends Fragment {
     }
 
 
-
+    /**
+     * Writes the quiz data to the database so that it can be displayed when the
+     * user wants to see their past quiz results.
+     */
     private class QuizzesDBWriter extends AsyncTask<Void, Quiz> {
         @Override
         protected Quiz doInBackground( Void... params) {

@@ -9,6 +9,10 @@ import android.widget.TextView;
 import android.widget.RadioButton;
 import android.widget.Button;
 
+/**
+ * QuizActivity Class contains the ViewPager that allows swiping between
+ * the quiz questions and final score page.
+ */
 public class QuizActivity extends AppCompatActivity {
 
     @Override

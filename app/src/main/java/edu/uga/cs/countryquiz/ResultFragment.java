@@ -18,11 +18,13 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  * Use the {@link ResultFragment#newInstance} factory method to
  * create an instance of this fragment.
+ *
+ * ResultFragment displays a table containing all of the results
+ * of all of the quizzes that have been taken by the user.
  */
 public class ResultFragment extends Fragment {
 
     private QuizzesData quizzesData = null;
-
     private List<Quiz> quizzesList;
 
     public ResultFragment() {
@@ -46,6 +48,15 @@ public class ResultFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_result, container, false);
     }
 
+    /**
+     *
+     * @param view The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     *
+     * Sets up a table that has a column for the date that the quiz was taken and the score
+     * on that quiz attempt.
+     */
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState ) {
         super.onViewCreated(view, savedInstanceState);

@@ -36,6 +36,9 @@ import java.io.InputStreamReader;
  * A simple {@link Fragment} subclass.
  * Use the {@link SplashFragment#newInstance} factory method to
  * create an instance of this fragment.
+ *
+ * Splash screen for when app starts. Displays the basic information about the quiz layout.
+ * Gives the user the option to start a new quiz or see their results of past quizzes.
  */
 public class SplashFragment extends Fragment{
 
@@ -69,6 +72,15 @@ public class SplashFragment extends Fragment{
 
     }
 
+    /**
+     *
+     * @param view The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     *
+     * Sets up the splash screen layout. "New Quiz!" and "See Results!" buttons.
+     *
+     */
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState ) {
         super.onViewCreated( view, savedInstanceState );
@@ -91,11 +103,13 @@ public class SplashFragment extends Fragment{
 
         countriesList = countriesData.retrieveAllCountries();
 
+        // fill country info from database
         if (countriesList.isEmpty()) {
             new CountriesDBWriter().execute();
         }
     }
 
+    //New Quiz Listener
     private class QuizListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -103,7 +117,7 @@ public class SplashFragment extends Fragment{
             startActivity(intent);
         }
     }
-
+    // See Results Listener
     private class ResultListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -112,6 +126,9 @@ public class SplashFragment extends Fragment{
         }
     }
 
+    /**
+     * Gets the countries and continents information from the database.
+     */
     private class CountriesDBWriter extends AsyncTask<Void, InputStream> {
         @Override
         protected InputStream doInBackground( Void... params) {

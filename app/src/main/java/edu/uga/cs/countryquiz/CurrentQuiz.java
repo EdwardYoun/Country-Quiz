@@ -5,6 +5,9 @@ package edu.uga.cs.countryquiz;
  * and country's continent.
  * The id is -1 if the object has not been persisted in the database yet, and
  * the db table's primary key value, if it has been persisted.
+ *
+ * CurrentQuiz Object class that allows quiz objects to be created and stored.
+ * Then later returned when see results is clicked.
  */
 public class CurrentQuiz {
 
