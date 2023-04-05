@@ -51,6 +51,7 @@ public class QuizFragment extends Fragment {
     private Button startNew;
     private Button seeResults;
     private CurrentQuiz currentQuiz;
+    private QuizzesData quizzesData = null;
 
     //position in quiz
     private int questNum;
@@ -136,7 +137,9 @@ public class QuizFragment extends Fragment {
             score.setText("Score: " + quizScore + "/6");
 
             currentQuiz = new CurrentQuiz (quests, questNum-1, date, quizScore);
-            //new QuizFragment.QuizzesDBWriter().execute();
+            quizzesData = new QuizzesData(getActivity());
+            quizzesData.open();
+            new QuizFragment.QuizzesDBWriter().execute();
 
         }
         else {
@@ -265,16 +268,18 @@ public class QuizFragment extends Fragment {
     }
 
 
-    /*
-    private class QuizzesDBWriter extends AsyncTask<Void, --> {
-        @Override
-        protected -- doInBackground( Void... params) {
 
+    private class QuizzesDBWriter extends AsyncTask<Void, Quiz> {
+        @Override
+        protected Quiz doInBackground( Void... params) {
+            Quiz quiz = new Quiz(currentQuiz.getDate(), currentQuiz.getCurScore());
+            Log.d(TAG, "quiz made for database table");
+            return quiz;
         }
         @Override
-        protected void onPostExecute( -- ) {
-
-            }
+        protected void onPostExecute( Quiz quiz ) {
+            quizzesData.storeQuiz(quiz);
+            Log.d(TAG, "quiz stored");
         }
-    }*/
+    }
 }

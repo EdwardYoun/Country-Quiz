@@ -76,7 +76,7 @@ public class QuizzesData {
                         columnIndex = cursor.getColumnIndex( QuizzesDBHelper.QUIZZES_COLUMN_DATE );
                         String date = cursor.getString( columnIndex );
                         columnIndex = cursor.getColumnIndex( QuizzesDBHelper.QUIZZES_COLUMN_RESULT );
-                        String result = cursor.getString( columnIndex );
+                        int result = cursor.getInt( columnIndex );
 
 
                         // create a new Quiz object and set its state to the retrieved values

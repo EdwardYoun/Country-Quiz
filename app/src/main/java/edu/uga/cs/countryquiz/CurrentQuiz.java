@@ -12,7 +12,7 @@ public class CurrentQuiz {
     //reference of array position, not current question otherwise it would be 1, not 0
     private int curQuest;
     private String date;
-    private long curScore;
+    private int curScore;
 
     public CurrentQuiz() {
         this.quests = new Question[6];
@@ -36,9 +36,9 @@ public class CurrentQuiz {
         }
     }
 
-    public void setCurScore(long curScore) { this.curScore = curScore; }
+    public void setCurScore(int curScore) { this.curScore = curScore; }
 
-    public long getCurScore() {
+    public int getCurScore() {
         return curScore;
     }
 
@@ -53,7 +53,7 @@ public class CurrentQuiz {
         this.curScore = 0;
     }
 
-    public CurrentQuiz(Question[] quests, int curQuest, String date, long curScore) {
+    public CurrentQuiz(Question[] quests, int curQuest, String date, int curScore) {
         this.quests = quests;
         this.curQuest = curQuest;
         this.date = date;

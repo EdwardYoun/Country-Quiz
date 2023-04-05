@@ -11,16 +11,16 @@ public class Quiz {
     //insert Question objects later. need to change Quiz, QuizzesData, and QuizzesDBHelper for this
     private long   id;
     private String date;
-    private String result;
+    private int result;
 
     public Quiz()
     {
         this.id = -1;
         this.date = null;
-        this.result = null;
+        this.result = -1;
     }
 
-    public Quiz( String date, String result) {
+    public Quiz( String date, int result) {
         this.id = -1;  // the primary key id will be set by a setter method
         this.date = date;
         this.result = result;
@@ -40,12 +40,12 @@ public class Quiz {
 
     public void setDate(String date) { this.date = date; }
 
-    public String getResult()
+    public int getResult()
     {
         return result;
     }
 
-    public void setResult(String result) { this.result = result; }
+    public void setResult(int result) { this.result = result; }
 
 
     public String toString()
